@@ -10,7 +10,44 @@
 ?>
 
 <html>
-    <a href="/index.php?reset=yes">Image du logo Plantishop</a>
-    <a href="/panier.php">Image du panier</a>
-    <a href="/profil.php?<?php echo $parameters; ?>">Image de l'icone de profil</a>
+    <div id="header">
+        <section id="titre">
+            <a href="/index.php?reset=yes">Plantishop</a>
+        </section>
+        <section id="section-tri">
+            <div id="search-bar">
+                <input type="text" name="query">
+                <button><i class="fa fa-search"></i></button>
+            </div>
+            <div id="tris">
+                <div id="tri-marque">
+                    <label for="tri-marque">Marque</label>
+                    <input type="text" name="tri-marque">
+                </div>
+                <div id="tri-prix">
+                    <label for="prix-min">Min</label>
+                    <input type="number" name="prix-min">
+                    <label for="prix-max">Max</label>
+                    <input type="number" name="prix-max">
+                </div>
+                <div id="bouton-trier">
+                    <button>Trier</button>
+                </div>
+            </div>
+        </section>
+        <section id="section-profil">
+            <div id="section-profil-haut">
+                <a href="./panier.php" id="icone-panier"><img src="./images/icone_panier.jpg" alt=""></a>
+                <a href="./profil.php?<?php echo $parameters; ?>" id="icone-profil"><img src="./images/icone_profil.png" alt=""></a>
+            </div>
+            <div id="section-profil-bas">
+                <?php if(isset($_SESSION["id_client"])) {if($_SESSION["type"] == "admin") {?> 
+                    <a href="./creation_article.php"><i class="fa fa-plus-circle"></i></a>
+                <?php } }?>
+            </div>
+        </section>
+    </div>
+    <script>
+
+    </script>
 </html>

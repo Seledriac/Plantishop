@@ -1,0 +1,164 @@
+@font-face {
+    font-family: "Yellowtail";
+    src: url('../fonts/Yellowtail-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#header {
+    display: flex;
+    width: 900px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    padding: 50px 100px 50px 100px;
+    box-shadow: 0 0 10px 1px rgb(63, 63, 63);
+}
+
+#titre a {
+    text-decoration: none;
+    color: black;
+    font-size: 60px;
+    font-family: "Yellowtail";
+    border: 10px solid black;
+    border-radius: 20px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+#section-tri {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 20px;
+}
+
+#section-tri input {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#search-bar {
+    display: flex;
+}
+
+#search-bar input {    
+    width: 500px;
+    height: 40px;
+    font-size: 20px;
+    border: solid black 5px;
+}
+
+#search-bar button {
+    background-color: white;
+    margin-left: -35px;
+    margin-top: 5px;
+    height: 30px;
+    font-size: 17px;
+    border: none;
+    border-right: solid black 5px;
+    cursor: pointer;
+}
+
+#search-bar button:focus {
+    border: none;
+    border-right: solid black 5px;
+    outline: none;
+}
+
+#tris {
+    display: flex;
+    margin-top: 10px;
+}
+
+#tris label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#tri-marque, #tri-prix {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#tri-marque input {
+    margin-left: 3px;
+    margin-right: -10px;
+    width: 90px;
+    height: 30px;
+    border-right: solid black 5px;
+    font-size: 20px;
+}
+
+#tri-prix input[name="prix-min"], #tri-prix input[name="prix-max"] {
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 60px;
+    height: 30px;
+    border-right: solid black 5px;
+    font-size: 20px;
+}
+
+#bouton-trier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+}
+
+#bouton-trier button{
+    color: black;
+    font-size: 25px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    padding: 7px;
+    transition-property: "background-color";
+}
+
+#bouton-trier button:hover{
+    cursor: pointer;
+    background-color: #add981;
+    -webkit-transition: 100ms linear;
+    -ms-transition: 100ms linear;
+    transition: 100ms linear;
+}
+
+#bouton-trier button:focus{
+    border: none;
+    outline: none;
+}
+
+#section-profil {
+    margin-left: 20px;
+    margin-top: -5px;
+}
+
+#section-profil-haut {
+    display: flex;
+}
+
+#icone-panier {
+    margin-right: 10px;
+}
+
+#icone-panier, #icone-profil {
+    display: block;
+    width: 70px;
+}
+
+#icone-panier img, #icone-profil img {
+    width: 100%;
+}
+
+#section-profil-bas {
+    display: flex;
+    justify-content: center;
+}
+
+#section-profil-bas a {
+    display: block;
+    color: #add981;
+    font-size: 50px;
+}

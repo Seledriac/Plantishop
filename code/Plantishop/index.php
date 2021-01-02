@@ -56,7 +56,7 @@
                             var article_prix = document.createElement("p");
                             article_prix.classList.add("article-prix");
                             article_nom.innerHTML = articles[i].nom;
-                            article_prix.innerHTML = articles[i].prix + "€";
+                            article_prix.innerHTML = (articles[i].prix + "€").replace(".", ",");
                             article_details.appendChild(article_nom);
                             article_details.appendChild(article_prix);
                             article.appendChild(article_details);

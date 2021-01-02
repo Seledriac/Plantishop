@@ -1,11 +1,111 @@
-body{
+body {
+    background-color: #add981;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#wrapper{
+    width: 1050px;
+    margin: auto;
+    background-color:white;
+    padding: 25px;
+    box-shadow: 0 2px 5px 1px rgb(63, 63, 63);
+}
+
+header {
+    display: flex;
+}
+
+#titre {
     text-align: center;
+    width: 80%;
 }
 
-#edit_button{
-    vertical-align: auto;
+#titre div {
+    margin-left: 250px;
 }
 
-#trash_button{
-    vertical-align: auto;
+#titre h1 {
+    font-size: 50px;
+}
+
+#titre p {
+    margin-top: -20px;
+    margin-bottom: 40px;
+    font-size: 30px;
+    color: #add981;
+}
+
+#edit {
+    font-size: 30px;
+    width: 20%;
+}
+
+#image-article {
+    margin-left: 50px;
+    width: 500px;
+    height: 500px;
+}
+
+#image-article img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+main {
+    display: flex;
+}
+
+#article {
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#infos-article {    
+    font-size: 22px;
+    width: 300px;
+}
+
+#infos-article p {
+    text-align: justify;
+}
+
+#prix-article {
+    font-size: 30px;
+    color: #add981;
+    text-justify: justify;
+}
+
+
+#btn-ajouter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+}
+
+#btn-ajouter button{
+    color: black;
+    font-size: 25px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+    transition-property: "background-color";
+}
+
+#btn-ajouter button:hover{
+    cursor: pointer;
+    background-color: #add981;
+    -webkit-transition: 100ms linear;
+    -ms-transition: 100ms linear;
+    transition: 100ms linear;
+}
+
+#btn-ajouter button:focus{
+    border: none;
+    outline: none;
 }

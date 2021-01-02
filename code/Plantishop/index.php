@@ -19,14 +19,28 @@
     </head>
     <body>
         <script>
-            window.nb_articles = 0;
+            getParameters = () => {             
+                address = window.location.search 
+                parameterList = new URLSearchParams(address) 
+                let map = new Map()             
+                parameterList.forEach((value, key) => { 
+                    map.set(key, value) 
+                })
+                return map
+            }
+            map = getParameters();
+            window.params = {};
+            map.forEach((value, key) => {  
+                window.params[key] = value  
+            }); 
+            window.params.nb_articles = 0;
             function loadArticles() {
                 $.ajax({
                     type: "GET", 
                     url: "./traitement/resultats.php",
-                    data: {'nb_articles': nb_articles},
+                    data: window.params,
                     dataType: 'json',
-                    success: function(articles) {                        
+                    success: function(articles) {               
                         var conteneur = document.createElement("div");
                         conteneur.classList.add("articles");
                         for (var i = 0; i < articles.length; i++) {
@@ -49,7 +63,7 @@
                             conteneur.appendChild(article);
                             document.querySelector("body").appendChild(conteneur);
                         }
-                        window.nb_articles += articles.length;
+                        window.params.nb_articles += articles.length;
                     },
                     error: function(xhr, ajaxOptions, thrownError) { 
                         console.log(xhr.responseText);
@@ -58,10 +72,9 @@
             }
             $(document).ready(function(){
                 $(window).scroll(function(){
-                    var $articles = $('#articles');
                     var position = parseInt(window.scrollY);
                     var bottom = parseInt($(document).height() - window.innerHeight);
-                    if(position == bottom){
+                    if(position >= bottom - 1){
                         loadArticles();
                     }
                 });

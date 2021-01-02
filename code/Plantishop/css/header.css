@@ -74,7 +74,7 @@
     font-weight: bold;
 }
 
-#tri-marque, #tri-prix {
+#tri-type, #tri-prix {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +82,7 @@
     margin-right: 10px;
 }
 
-#tri-marque input {
+#tri-type input {
     margin-left: 3px;
     margin-right: -10px;
     width: 90px;

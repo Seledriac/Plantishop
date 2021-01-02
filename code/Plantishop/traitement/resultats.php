@@ -1,42 +1,37 @@
 <?php
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL);
-    session_start();    
-
-    if(isset($_GET["reset"])) { // Si le logo a été cliqué
-        unset($_SESSION["type"]);
-        unset($_SESSION["prix"]);
-    }
-
-    if(isset($_GET["query"])) { // Si c'est une recherche de l'utilisateur
-        $sql = $sql." WHERE nom LIKE %".$_GET["query"]."%";
-    }
-    
-    if(isset($_GET["type"])) { // Si l'un des boutons de type d'article du header a été cliqué
-        $_SESSION["type"] = $_GET["type"];
-        $sql = $sql." WHERE type=".$_GET["type"];
-    } else if(isset($_SESSION["type"])) { // Mémoire de l'accumulation des tris
-        if(isset($_GET["query"])) { // Si c'est une recherche de l'utilisateur
-            $sql = $sql." AND type=".$_SESSION["type"];
-        } else {
-            $sql = $sql." WHERE type=".$_SESSION["type"];
-        }
-    }
-
-    if(isset($_GET["tri"])) { // Si l'un des boutons de tris du header a été cliqué (prix ou marque)
-        $_SESSION["tri"] = $_GET["tri"];
-        $sql = $sql." ORDER BY ".$_GET["tri"];
-    }  else if(isset($_SESSION["tri"])) { // Mémoire de l'accumulation des tris
-        $sql = $sql." WHERE tri=".$_SESSION["tri"];
-    }
-
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
-    $stmt = $mysqli->prepare("SELECT * FROM article LIMIT ?,?");
     $nb_articles = $_GET["nb_articles"];
     $nb_articles_plus_6 = strval(intval($nb_articles + 6));
-    $stmt->bind_param('dd', $nb_articles, $nb_articles_plus_6);
+    $query = "%%";
+    $type = "%%";
+    $prix_min = 0;
+    $prix_max = 1000;
+    if(isset($_GET["query"])) { 
+        $query = "%".$_GET["query"]."%";
+    }
+    if(isset($_GET["tri-type"])) { 
+        $type = "%".$_GET["tri-type"]."%";
+    }
+    if(isset($_GET["prix-min"])) {
+        if(isset($_GET["prix-max"])) {
+            if($_GET["prix-min"] < $_GET["prix-max"])
+                $prix_max = intval($_GET["prix-min"]);
+        } else {
+            $prix_min = intval($_GET["prix-min"]);
+        }
+    }
+    if(isset($_GET["prix-max"])) {
+        if(isset($_GET["prix-min"])) {
+            if($_GET["prix-max"] > $_GET["prix-min"])
+                $prix_max = intval($_GET["prix-max"]);
+        } else {
+            $prix_max = intval($_GET["prix-max"]);
+        }
+    }
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    $sql = "SELECT id_article, nom, prix FROM article WHERE nom LIKE ? AND type LIKE ? AND prix BETWEEN ? AND ? LIMIT ?,?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param('ssdddd', $query, $type, $prix_min, $prix_max, $nb_articles, $nb_articles_plus_6);
     $stmt->execute();
     $result = $stmt->get_result();
     $results = array();

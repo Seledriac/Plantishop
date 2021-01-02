@@ -12,29 +12,31 @@
 <html>
     <div id="header">
         <section id="titre">
-            <a href="/index.php?reset=yes">Plantishop</a>
+            <a href="./index.php">Plantishop</a>
         </section>
-        <section id="section-tri">
-            <div id="search-bar">
-                <input type="text" name="query">
-                <button><i class="fa fa-search"></i></button>
-            </div>
-            <div id="tris">
-                <div id="tri-marque">
-                    <label for="tri-marque">Marque</label>
-                    <input type="text" name="tri-marque">
+        <form action="./index.php?" method="GET">
+            <section id="section-tri">            
+                <div id="search-bar">
+                    <input type="text" name="query">
+                    <button type="submit"><i class="fa fa-search"></i></button>                
                 </div>
-                <div id="tri-prix">
-                    <label for="prix-min">Min</label>
-                    <input type="number" name="prix-min">
-                    <label for="prix-max">Max</label>
-                    <input type="number" name="prix-max">
+                <div id="tris">
+                    <div id="tri-type">
+                        <label for="tri-type">Type</label>
+                        <input type="text" name="tri-type">
+                    </div>
+                    <div id="tri-prix">
+                        <label for="prix-min">Min</label>
+                        <input type="number" name="prix-min" default="0" min="0" max="999" value="0">
+                        <label for="prix-max">Max</label>
+                        <input type="number" name="prix-max" default="50" min="1" max="1000" value="50">
+                    </div>
+                    <div id="bouton-trier">
+                        <button type="submit">Trier</button>
+                    </div>
                 </div>
-                <div id="bouton-trier">
-                    <button>Trier</button>
-                </div>
-            </div>
-        </section>
+            </section>
+        </form>
         <section id="section-profil">
             <div id="section-profil-haut">
                 <a href="./panier.php" id="icone-panier"><img src="./images/icone_panier.jpg" alt=""></a>

@@ -1,0 +1,85 @@
+form{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction:column ;
+}
+
+h1{
+    padding-bottom: 50px;
+    font-size: 50px;
+    font-weight: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#Pseudonyme{ 
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#Pseudonyme2{
+    padding-bottom: 30px; 
+}
+
+#Pseudonyme2 input{
+    text-align: center;
+    border: solid black 4px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#MotDePasse{
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#MotDePasse2{
+    padding-bottom: 30px;
+}
+
+#MotDePasse2 input{
+    text-align: center;
+    border: solid black 4px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#No_account{
+    padding-bottom: 30px;
+    font-size:20px;  
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#connexion_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#connexion_button button{
+    color: black;
+    font-size: 25px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    transition-property: "background-color";
+}
+
+#connexion_button button:hover{
+    cursor: pointer;
+    background-color: #add981;
+    -webkit-transition: 100ms linear;
+    -ms-transition: 100ms linear;
+    transition: 100ms linear;
+}
+
+#connexion_button button:focus{
+    border: none;
+    outline: none;
+}

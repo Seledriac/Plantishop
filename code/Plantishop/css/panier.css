@@ -1,0 +1,80 @@
+body {
+    background-color: #add981;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#wrapper{
+    width: 1050px;
+    margin: auto;
+    background-color:white;
+    padding: 25px;
+    box-shadow: 0 2px 5px 1px rgb(63, 63, 63);
+}
+
+#panier {
+    display: flex;
+    justify-content: center;
+}
+
+#entetes {
+    font-size: 30px;
+}
+
+#panier table th, td {
+    font-size: 20px;
+    padding: 20px 100px 20px 100px;
+}
+#panier tr:nth-child(even) {
+    background: #CCC;
+}
+#panier tr:nth-child(odd) {
+    background: #EEE;
+}
+
+#panier table th {
+    text-align: left;
+}
+
+#div-commander {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#somme {
+    font-size: 30px;
+    margin-bottom: 20px;    
+    color: #add981;  
+}
+
+#btn-commander {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+}
+
+#btn-commander button{
+    color: black;
+    font-size: 25px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+    transition-property: "background-color";
+}
+
+#btn-commander button:hover{
+    cursor: pointer;
+    background-color: #add981;
+    -webkit-transition: 100ms linear;
+    -ms-transition: 100ms linear;
+    transition: 100ms linear;
+}
+
+#btn-commander button:focus{
+    border: none;
+    outline: none;
+}

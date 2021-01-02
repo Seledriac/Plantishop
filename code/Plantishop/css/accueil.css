@@ -1,12 +1,13 @@
 body {
     background-color: #add981;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #produits {
-    width: 900px;
+    width: 1050px;
     margin: auto;
     background-color:white;
-    padding: 100px;
+    padding: 25px;
     box-shadow: 0 0 5px 1px rgb(63, 63, 63);
     display: grid;
     min-height: 150vh;
@@ -14,16 +15,23 @@ body {
     grid-template-rows: repeat(4, 400px);
 }
 
+.article {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
 .article-details {
     position: absolute;
-    width: 100%;
+    width: 94%;
     bottom: 0;
     background-color: #FFFFFFDF;
     padding: 5px 20px;
 }
 
 .article-nom {
-    font-size: 22px;
+    color: black;
+    font-size: 20px;
     font-weight: 600;
     line-height: 3px;
 }
@@ -31,8 +39,8 @@ body {
 .article-prix {
     color: #ADD981;
     line-height: 3px;
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .article-grid1 {

@@ -36,8 +36,20 @@ header {
 }
 
 #edit {
-    font-size: 30px;
+    display: flex;
     width: 20%;
+}
+
+#edit a {
+    display: block;
+    font-size: 50px;
+    color: #add981;
+    margin-top: 50px;
+    padding: 10px;
+}
+
+.fa-edit {
+    margin-top: 3px;
 }
 
 #image-article {

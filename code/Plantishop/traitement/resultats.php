@@ -13,7 +13,7 @@
         $sql = $sql." WHERE nom LIKE %".$_GET["query"]."%";
     }
     
-    if(isset($_GET["type"])) { // Si l'un des boutons de type de produit du header a été cliqué
+    if(isset($_GET["type"])) { // Si l'un des boutons de type d'article du header a été cliqué
         $_SESSION["type"] = $_GET["type"];
         $sql = $sql." WHERE type=".$_GET["type"];
     } else if(isset($_SESSION["type"])) { // Mémoire de l'accumulation des tris
@@ -34,7 +34,9 @@
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $stmt = $mysqli->prepare("SELECT * FROM article LIMIT ?,?");
-    $stmt->bind_param('dd', $nb_produits, strval(intval($nb_produits) + 6));
+    $nb_articles = $_GET["nb_articles"];
+    $nb_articles_plus_6 = strval(intval($nb_articles + 6));
+    $stmt->bind_param('dd', $nb_articles, $nb_articles_plus_6);
     $stmt->execute();
     $result = $stmt->get_result();
     $results = array();

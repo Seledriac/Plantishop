@@ -3,12 +3,12 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#produits {
+.articles {
     width: 1050px;
     margin: auto;
     background-color:white;
     padding: 25px;
-    box-shadow: 0 0 5px 1px rgb(63, 63, 63);
+    box-shadow: 0 2px 5px 1px rgb(63, 63, 63);
     display: grid;
     min-height: 150vh;
     grid-template-columns: repeat(4, 1fr);

@@ -1,0 +1,131 @@
+form{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction:column ;
+}
+
+h1{
+    padding-bottom: 30px;
+    font-size: 50px;
+    font-weight: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+label{
+    display: block;
+  
+}
+
+#Nom{ 
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+#Nom input{
+    text-align: center;
+    border: solid black 4px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#Prix{
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+#Prix input{
+    text-align: center;
+    border: solid black 4px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+
+#Description{
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+#Description textarea{
+    text-align: center;
+    border: solid black 4px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#Categorie{
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+#Categorie input{
+    text-align: center;
+    border: solid black 4px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+#Cover{
+    padding-bottom: 20px;
+    font-size: 30px;
+    font-weight: 900;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+#Cover input{
+    text-align: center;
+    border: solid black 4px;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+
+#creation_button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#creation_button button{
+    color: black;
+    font-size: 25px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 10px;
+    padding: 8px;
+    transition-property: "background-color";
+}
+
+#creation_button button:hover{
+    cursor: pointer;
+    background-color: #add981;
+    -webkit-transition: 100ms linear;
+    -ms-transition: 100ms linear;
+    transition: 100ms linear;
+}
+
+#creation_button button:focus{
+    border: none;
+    outline: none;
+}

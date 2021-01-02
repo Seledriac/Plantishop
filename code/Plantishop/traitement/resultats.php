@@ -1,7 +1,8 @@
 <?php
-    session_start();
-    $scroll_state = $_GET["scroll_state"];
-    $sql = "SELECT id_article, nom, prix FROM article LIMIT".$scroll_state.",".str(intval($scroll_state) + 6); // On récupère les articles 6 par 6
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+    session_start();    
 
     if(isset($_GET["reset"])) { // Si le logo a été cliqué
         unset($_SESSION["type"]);
@@ -30,30 +31,29 @@
         $sql = $sql." WHERE tri=".$_SESSION["tri"];
     }
 
-    $dbhost = 'localhost:3306';
-    $dbuser = 'root';
-    $dbpass = 'pass';
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-    if(!$conn ){
-        die('Erreur de connexion : ' . mysqli_error());
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    $stmt = $mysqli->prepare("SELECT id_article, nom, prix FROM article");
+    $nb_produits = $_GET["nb_produits"];
+    // $stmt->bind_param('dd', $nb_produits, strval(intval($nb_produits) + 6)); 
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $results = array();
+    while($row = $result->fetch_assoc()) {
+        array_push($results, $row);        
     }
-    $result = mysqli_query($conn, $sql);
-    header('Content-Type: application/json');
-    while($row = mysqli_fetch_assoc($result)) {
-        echo json_encode(array($result)); // On renvoie les résultats sous forme d'objets JS
-        // FORMAT D'UN OBJET RENVOYÉ
-        //
-        // {
-        //     {
-        //         id_article : 2,
-        //         nom : "Monstera",
-        //         prix : 17.99,
-        //     },
-        //     .
-        //     etc
-        //     .
-        //     .
-        // }
-    }
-    mysqli_close($conn);
+    // FORMAT D'UN OBJET RENVOYÉ        
+    // {
+    //     {
+    //         id_article : 1,
+    //         nom : "Monstera",
+    //         prix : 17.99,
+    //     },
+    //     .
+    //     etc
+    //     .
+    //     .
+    // }
+    echo json_encode($results); 
+    $mysqli->close();
     die();

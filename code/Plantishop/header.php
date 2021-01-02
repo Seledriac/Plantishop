@@ -11,6 +11,9 @@
 
 <html>
     <a href="/index.php?reset=yes">Image du logo Plantishop</a>
+    <img src=".images/logo.jpg">
     <a href="/panier.php">Image du panier</a>
+    <img src="images/panier.png">
     <a href="/profil.php?<?php echo $parameters; ?>">Image de l'icone de profil</a>
+    <img src="images/profil.png">
 </html>

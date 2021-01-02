@@ -1,21 +1,19 @@
 <?php
-    include '/header.php';
+    include './header.php';
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Page d'inscription</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="./css/header.css">
+        <link rel="stylesheet" href="./css/page_inscription.css">
     </head>
     <body>
-        <form action="/traitement/inscription.php">
-            <?php if(isset($_GET["id_page"])) { $id_page = $_GET["id_page"]; ?>
-                <input type="hidden" name="id_page" value="<?php echo $_GET["id_page"]; ?>">
-            <?php } ?>
-            <?php if(isset($_GET["id_article"])) { $id_page = $_GET["id_article"];?>
-                <input type="hidden" name="id_article" value="<?php echo $_GET["id_article"]; ?>">
-            <?php } ?>
+        <form action="./traitement/inscription.php">
             <h1>Page d'inscription</h1>
 
             <div id="Pseudonyme">

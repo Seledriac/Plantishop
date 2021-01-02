@@ -39,13 +39,13 @@
                             <th>Quantité</th>
                             <th>Prix</th>
                         </tr>
-                        <?php foreach($lignes as $ligne) {?>
+                        <?php if(isset($_SESSION["panier"])) { foreach($lignes as $ligne) {?>
                             <tr class="ligne">
                                 <td class="nom"><?php echo $ligne["nom"] ?></td>
                                 <td class="quantite"><?php echo $ligne["quantite"] ?></td>
                                 <td class="prix"><?php echo $ligne["prix"] ?>€</td>
                             </tr>
-                        <?php } ?>
+                        <?php } }?>
                     </table>
                 </div>
                 <div id="div-commander">

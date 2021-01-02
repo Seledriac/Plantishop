@@ -26,28 +26,27 @@
                     type: "GET", 
                     url: "./traitement/resultats.php",
                     data: {'nb_produits': nb_produits},
-                    // dataType: 'json',
+                    dataType: 'json',
                     success: function(produits) {
-                        console.log(produits);
-                        // var conteneur = document.querySelector("#produits");
-                        // for (var i = 0; i < produits.length; i++) {
-                        //     var article = document.createElement("a");
-                        //     article.backgroundImage = "url(./images/articles/article_" + produits[i].id_article + ".jpg)";
-                        //     var num_article = produits[i].id_article - 1 % 6 + 1;
-                        //     article.classList.add("article-grid" + num_article, "article");
-                        //     var article_details = document.createElement("div");
-                        //     article_details.classList.add("article-details");
-                        //     var article_nom = document.createElement("p");
-                        //     article_nom.classList.add("article-nom");
-                        //     var article_prix = document.createElement("p");
-                        //     article_prix.classList.add("article-prix");
-                        //     article_nom.innerHTML = produits[i].nom;
-                        //     article_prix.innerHTML = produits[i].prix;
-                        //     article_details.appendChild(article_nom);
-                        //     article_details.appendChild(article_prix);
-                        //     article.appendChild(article_details);
-                        //     conteneur.appendChild(article);
-                        // }
+                        var conteneur = document.querySelector("#produits");
+                        for (var i = 0; i < produits.length; i++) {
+                            var article = document.createElement("a");
+                            article.backgroundImage = "url(./images/articles/article_" + produits[i].id_article + ".jpg)";
+                            var num_article = produits[i].id_article - 1 % 6 + 1;
+                            article.classList.add("article-grid" + num_article, "article");
+                            var article_details = document.createElement("div");
+                            article_details.classList.add("article-details");
+                            var article_nom = document.createElement("p");
+                            article_nom.classList.add("article-nom");
+                            var article_prix = document.createElement("p");
+                            article_prix.classList.add("article-prix");
+                            article_nom.innerHTML = produits[i].nom;
+                            article_prix.innerHTML = produits[i].prix;
+                            article_details.appendChild(article_nom);
+                            article_details.appendChild(article_prix);
+                            article.appendChild(article_details);
+                            conteneur.appendChild(article);
+                        }
                     },
                     error: function(xhr, ajaxOptions, thrownError) { alert(xhr.responseText); }
                 });

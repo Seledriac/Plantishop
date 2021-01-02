@@ -33,14 +33,13 @@
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
-    $stmt = $mysqli->prepare("SELECT id_article, nom, prix FROM article");
-    $nb_produits = $_GET["nb_produits"];
-    // $stmt->bind_param('dd', $nb_produits, strval(intval($nb_produits) + 6)); 
+    $stmt = $mysqli->prepare("SELECT * FROM article LIMIT ?,?");
+    $stmt->bind_param('dd', $nb_produits, strval(intval($nb_produits) + 6));
     $stmt->execute();
     $result = $stmt->get_result();
     $results = array();
     while($row = $result->fetch_assoc()) {
-        array_push($results, $row);        
+        $results[] = array_map("utf8_encode", $row);
     }
     // FORMAT D'UN OBJET RENVOYÉ        
     // {
@@ -54,6 +53,6 @@
     //     .
     //     .
     // }
-    echo json_encode($results); 
+    echo json_encode($results, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     $mysqli->close();
     die();

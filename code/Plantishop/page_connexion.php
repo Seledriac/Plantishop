@@ -16,7 +16,7 @@
             <?php if(isset($_GET["id_article"])) { $id_page = $_GET["id_article"];?>
                 <input type="hidden" name="id_article" value="<?php echo $_GET["id_article"]; ?>">
             <?php } ?>
-            <a href="page_inscription.php?<?php echo $parameters; ?>"></a>
+            <a href="page_inscription.php?<?php echo $parameters; ?>">Je n'ai pas de compte</a>
         </form>
     </body>
 </html>

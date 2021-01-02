@@ -20,18 +20,18 @@
     <body>
         <script>
             getParameters = () => {             
-                address = window.location.search 
-                parameterList = new URLSearchParams(address) 
-                let map = new Map()             
+                address = window.location.search; 
+                parameterList = new URLSearchParams(address); 
+                let map = new Map();             
                 parameterList.forEach((value, key) => { 
-                    map.set(key, value) 
+                    map.set(key, value);
                 })
-                return map
+                return map;
             }
             map = getParameters();
             window.params = {};
             map.forEach((value, key) => {  
-                window.params[key] = value  
+                window.params[key] = value; 
             }); 
             window.params.nb_articles = 0;
             function loadArticles() {

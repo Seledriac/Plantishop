@@ -47,8 +47,8 @@
                 </div>
                 <div id="edit">
                     <?php if(isset($_SESSION["id_client"])) {if($_SESSION["type"] == "admin") {?> 
-                        <a href="./modification_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fa fa-edit"></a>
-                        <a href="./traitement/remove_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fa fa-trash"></a>
+                        <a href="./modification_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fa fa-edit"></i></a>
+                        <a href="./traitement/remove_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fa fa-trash"></i></a>
                     <?php } }?>
                 </div>            
             </header>
@@ -70,7 +70,32 @@
             </main>
         </div>        
         <script>
-            // Cliquer sur le bouton "Ajouter au panier" envoie une requête AJAX à /traitement/ajout_panier.php
+            getParameters = () => {             
+                address = window.location.search;
+                parameterList = new URLSearchParams(address);
+                let map = new Map();            
+                parameterList.forEach((value, key) => { 
+                    map.set(key, value);
+                })
+                return map;
+            }
+            window.map = getParameters();
+            $(document).ready(function() {
+                $("#btn-ajouter").click(function(){
+                    $.ajax({
+                        type: "GET",
+                        url: "./traitement/ajout_panier.php",
+                        data: {"id_article": window.map.get("id_article")},
+                        dataType: 'json',
+                        success: function(panier) {
+                            //console.log(panier)}
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) { 
+                            console.log(xhr.responseText);
+                        }
+                    });        
+                });
+            });            
         </script>
     </body>
 </html>

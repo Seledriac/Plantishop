@@ -11,6 +11,7 @@
             $stmt->bind_param("d", $id_article);
             $stmt->execute();
             $result = $stmt->get_result();
+            echo var_dump($result);
             $lignes[$id_article] = array_map("utf8_encode", $result->fetch_assoc());
             $lignes[$id_article]["quantite"] =  $nb_articles;
         }        

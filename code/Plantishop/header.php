@@ -1,14 +1,3 @@
-<?php
-    // Récupérer les paramètres de pages passés en get permet de les transférer
-    // à la page de connexion lorsque le bouton profil est cliqué
-    if(isset($_GET["id_page"])) {
-        $parameters = "id_page=".$_GET["id_page"];
-    }
-    if(isset($_GET["id_article"])) {
-        $parameters = $parameters."&id_article=".$_GET["id_article"];
-    }
-?>
-
 <html>
     <div id="header">
         <section id="titre">
@@ -18,7 +7,7 @@
             <section id="section-tri">            
                 <div id="search-bar">
                     <input type="text" name="query">
-                    <button type="submit"><i class="fa fa-search"></i></button>                
+                    <button type="submit"><i class="fas fa-search"></i></button>                
                 </div>
                 <div id="tris">
                     <div id="tri-type">
@@ -40,12 +29,15 @@
         <section id="section-profil">
             <div id="section-profil-haut">
                 <a href="./panier.php" id="icone-panier"><img src="./images/icone_panier.jpg" alt=""></a>
-                <a href="./profil.php?<?php echo $parameters; ?>" id="icone-profil"><img src="./images/icone_profil.png" alt=""></a>
+                <a href="./profil.php<?php if(isset($_GET["id_page"])) {echo "?id_page=".$_GET["id_page"];} ?>" id="icone-profil"><img src="./images/icone_profil.png" alt=""></a>
             </div>
             <div id="section-profil-bas">
-                <?php if(isset($_SESSION["id_client"])) {if($_SESSION["type"] == "admin") {?> 
-                    <a href="./creation_article.php"><i class="fa fa-plus-circle"></i></a>
-                <?php } }?>
+                <?php session_start(); if(isset($_SESSION["id_client"])) { ?> 
+                    <?php if($_SESSION["type"] == "admin") { ?>
+                        <a href="./creation_article.php"><i class="fas fa-plus-circle"></i></a>
+                    <?php } ?>
+                    <a href="./traitement/deconnexion.php<?php if(isset($_GET["id_page"])) {echo "?id_page=".$_GET["id_page"];} if(isset($_GET["id_article"])) {echo "&id_article=".$_GET["id_article"];} ?>"><span><i class="fas fa-door-open"></i></span></a>
+                <?php }?>
             </div>
         </section>
     </div>

@@ -1,46 +1,52 @@
 <?php
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+    session_start();
     if(isset($_SESSION["type"])) {
-        if(!$_SESSION["type"] == "administrateur") {
-            header('location:index.php');
+        if(!($_SESSION["type"] == "admin")) {
+            header('location:./index.php');
         }
     } else {
-        header('location:index.php');
+        header('location:./index.php');
     }
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Page de création d'article</title>
-        <link rel="stylesheet" href="css/creation_article.css">
+        <link rel="stylesheet" href="./css/creation_article.css">
+        <link rel="icon" type="image/x-icon" href="./favicon.ico?">
     </head>
     <body>
-        <form action="traitement/ajout_article.php">
-        <h1>Page de création d'article</h1>
+        <form action="./traitement/ajout_article.php" method="POST" enctype="multipart/form-data">
+            <h1>Page de création d'article</h1>
 
             <div id="Nom">
-                <label for="name">Nom</label>
-                <input type="text" id="name" name="article_name">   
+                <label for="nom">Nom</label>
+                <input type="text" id="name" name="nom">   
             </div>
 
             <div id="Prix">
-                <label for="password">Prix</label>
-                <input type="number" min="0.00" max="10000.00" step="0.01">
+                <label for="prix">Prix</label>
+                <input type="number" min="0.00" max="10000.00" step="0.01" name="prix">
             </div>
 
             <div id="Description">
                 <label for="description">Description</label>
-                <textarea id="msg" name="article_description"></textarea>
+                <textarea id="msg" name="description"></textarea>
             </div>
 
             <div id="Categorie">
-                <label for="categorie">Type</label>
-                <input type="text" id="categorie-select" name="categorie">
+                <label for="type">Type</label>
+                <input type="text" id="categorie-select" name="type">
             </div>
             
             <div id="Cover">
-                <label for="Image">Image</label>
+                <label for="Image">Image (jpg)</label>
                 <input type="file"
                     id="article_image" name="image"
                     accept="image/png, image/jpeg">

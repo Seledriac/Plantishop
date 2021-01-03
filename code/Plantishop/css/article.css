@@ -3,7 +3,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#wrapper{
+#wrapper {
     width: 1050px;
     margin: auto;
     background-color:white;
@@ -42,14 +42,11 @@ header {
 
 #edit a {
     display: block;
-    font-size: 50px;
+    height: 40px;
+    font-size: 40px;
     color: #add981;
     margin-top: 50px;
     padding: 10px;
-}
-
-.fa-edit {
-    margin-top: 3px;
 }
 
 #image-article {

@@ -30,10 +30,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $getData["nom"]; ?></title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="./librairies/fontawesome-free-5.15.1-web/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/header.css">        
         <link rel="stylesheet" href="./css/article.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="./librairies/jquery-3.5.1.min.js"></script>
         <link rel="icon" type="image/x-icon" href="./favicon.ico?">
     </head>
     <body>
@@ -47,8 +47,8 @@
                 </div>
                 <div id="edit">
                     <?php if(isset($_SESSION["id_client"])) {if($_SESSION["type"] == "admin") {?> 
-                        <a href="./modification_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fa fa-edit"></i></a>
-                        <a href="./traitement/remove_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fa fa-trash"></i></a>
+                        <a href="./modification_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fas fa-edit"></i></a>
+                        <a href="./traitement/remove_article.php?id_article=<?php echo $_GET["id_article"]; ?>"><i class="fas fa-trash"></i></a>
                     <?php } }?>
                 </div>            
             </header>

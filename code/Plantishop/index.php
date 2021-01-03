@@ -1,7 +1,4 @@
 <?php
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL);
     $_GET["id_page"] = 1;
     include './header.php';
 ?>
@@ -11,11 +8,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Plantishop - Tout pour le jardin à prix malin</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href="./librairies/fontawesome-free-5.15.1-web/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/accueil.css">
+        <script src="./librairies/jquery-3.5.1.min.js"></script>
         <link rel="icon" type="image/x-icon" href="./favicon.ico?">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
         <script>

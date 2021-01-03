@@ -9,11 +9,11 @@
         foreach($_SESSION["panier"] as $id_article => $nb_articles) {
             $stmt = $mysqli -> prepare("SELECT nom, prix FROM article WHERE id_article = ?");
             $stmt->bind_param("d", $id_article);
-            $stmt->execute();
-            $result = $stmt->get_result();
+            $stmt->execute();            
+            $result = $stmt->get_result();            
             $lignes[$id_article] = array_map("utf8_encode", $result->fetch_assoc());
             $lignes[$id_article]["quantite"] =  $nb_articles;
-        }        
+        }
         $mysqli->close();
     }
 ?>

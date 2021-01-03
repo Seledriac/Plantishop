@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Dim 03 Janvier 2021 à 11:59
+-- Généré le :  Dim 03 Janvier 2021 à 22:18
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.2.7
 
@@ -99,7 +99,7 @@ CREATE TABLE `utilisateur` (
 --
 
 INSERT INTO `utilisateur` (`id_client`, `type`, `username`, `pass`, `mail`, `tel`, `adresse_facturation`, `adresse_livraison`, `num_cb`, `nom_cb`, `num_cvv`) VALUES
-(2, 'admin', 'tom', 'pass', 'tom@gmail.com', '06-32-34-55-12', NULL, NULL, NULL, NULL, NULL),
+(2, 'admin', 'tom', 'pass', 'tom@gmail.com', '06-32-34-55-12', 'adresse facturation', 'adresse livraison', 1234567, 'Nom CB', 123),
 (3, 'admin', 'antoine', 'pass', 'antoine@gmail.com', '06-23-43-65-21', NULL, NULL, NULL, NULL, NULL);
 
 --
@@ -141,6 +141,11 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `article`
   MODIFY `id_article` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT pour la table `commande`
+--
+ALTER TABLE `commande`
+  MODIFY `id_commande` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --

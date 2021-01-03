@@ -1,6 +1,7 @@
 <?php
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    $mysqli->set_charset("utf8");
     $sql = "INSERT INTO article(type, nom, prix, description) VALUES (?, ?, ?, ?)";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('ssss', $_POST["type"], $_POST["nom"], $_POST["prix"], $_POST["description"]);

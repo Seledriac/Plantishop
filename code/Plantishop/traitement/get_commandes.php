@@ -1,26 +1,22 @@
 <?php
-    $sql = "
-        SELECT * FROM commande
-        INNER JOIN utilisateur
-        ON commande.id_client = client.id_client
-        WHERE id_client='".$_SESSION["id_client"]."'";
-    $dbhost = 'localhost:3306';
-    $dbuser = 'root';
-    $dbpass = 'pass';
-    $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
-    if(!$conn ){
-        die('Erreur de connexion : ' . mysqli_error());
+    session_start();
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    $sql = "SELECT id_commande,date FROM commande WHERE id_client=?";
+    $stmt = $mysqli->prepare($sql);
+    $stmt->bind_param('d', $_SESSION["id_client"]);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $results = array();
+    while($row = $result->fetch_assoc()) {
+        $results[] = array_map("utf8_encode", $row);
     }
-    $result = mysqli_query($conn, $sql);
-    header('Content-Type: application/json');
-    while($row = mysqli_fetch_assoc($result)) {
-        echo json_encode(array($result)); // On renvoie les résultats sous forme d'objets JS
-        // Les données sont de la forme :
-        // {
-        //     id_commande : 1054875643,
-        //     id_client : 18,
-        //     date : "09/12/2020",
-        // }
-    }
-    mysqli_close($conn);
+    // On renvoie les résultats sous forme d'objets JS
+    // Les données sont de la forme :
+    // {
+    //     id_commande : 1054875643,
+    //     date : "09/12/2020"
+    // }
+    echo json_encode($results, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    $mysqli->close();
     die();

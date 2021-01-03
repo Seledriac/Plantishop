@@ -1,20 +1,22 @@
 <?php
-    $_GET["id_page"] = 3;
-    session_start();
-    include './header.php';
-    if(isset($_SESSION["panier"])) {
+    if(isset($_GET["id_commande"])) {
+        $_GET["id_page"] = 3;
+        session_start();
+        include './header.php';
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
-        $lignes = array();
-        foreach($_SESSION["panier"] as $id_article => $nb_articles) {
-            $stmt = $mysqli -> prepare("SELECT nom, prix FROM article WHERE id_article = ?");
-            $stmt->bind_param("d", $id_article);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $lignes[$id_article] = $result->fetch_assoc();
-            $lignes[$id_article]["quantite"] =  $nb_articles;
-        }        
+        $stmt = $mysqli -> prepare("SELECT * FROM ligne INNER JOIN article ON ligne.id_article=article.id_article WHERE id_commande=?");
+        $stmt->bind_param("d", $_GET["id_commande"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 1) {
+            $lignes = $result->fetch_assoc();
+        } else {
+            $lignes = [$result->fetch_assoc()];    
+        }
         $mysqli->close();
+    } else {
+        header('location: ./index.php');
     }
 ?>
 <!DOCTYPE html>
@@ -32,7 +34,7 @@
     </head>
     <body>
         <div id="wrapper">
-            <form action="./commander.php">
+            <form action="./profil.php">
                 <div id="panier">
                     <table>
                         <tr id="entetes">
@@ -40,18 +42,18 @@
                             <th>Quantité</th>
                             <th>Prix</th>
                         </tr>
-                        <?php if(isset($_SESSION["panier"])) { foreach($lignes as $ligne) {?>
+                        <?php foreach($lignes as $ligne) {?>
                             <tr class="ligne">
                                 <td class="nom"><?php echo $ligne["nom"] ?></td>
                                 <td class="quantite"><?php echo $ligne["quantite"] ?></td>
                                 <td class="prix"><?php echo $ligne["prix"] ?>€</td>
                             </tr>
-                        <?php } }?>
+                        <?php }?>
                     </table>
                 </div>
                 <div id="div-commander">
                     <div id="somme">Total : <span></span></div>
-                    <div id="btn-commander"><button type="submit">Commander</button></div>
+                    <div id="btn-commander"><button type="submit">Retour aux commandes</button></div>
                 </div>
                 <script>
                     var lignes = document.querySelectorAll(".ligne");

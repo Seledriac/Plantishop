@@ -20,7 +20,7 @@
     $_SESSION["adresse_livraison"] = $result["adresse_livraison"];
     $_SESSION["num_cb"] = $result["num_cb"];
     $_SESSION["nom_cb"] = $result["nom_cb"];
-    $_SESSION["num_ccv"] = $result["num_ccv"];
+    $_SESSION["num_cvv"] = $result["num_cvv"];
     if(isset($_POST["id_page"])) { 
         switch($_POST["id_page"]) { // Redirection vers la page précédente
             case 1:

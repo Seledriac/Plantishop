@@ -4,9 +4,143 @@ body {
 }
 
 #wrapper {
-    width: 1050px;
+    width: 1150px;
     margin: auto;
     background-color:white;
     padding: 25px;
     box-shadow: 0 2px 5px 1px rgb(63, 63, 63);
+}
+
+#header {
+    width: 1150px;
+}
+
+#titre a {
+    font-size: 60px;
+    border-radius: 20px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+
+#search-bar input {    
+    width: 500px;
+    height: 40px;
+    font-size: 20px;
+}
+
+#search-bar button {
+    margin-left: -35px;
+    margin-top: 5px;
+    height: 30px;
+    font-size: 17px;
+}
+
+#tris {
+    margin-top: 10px;
+}
+
+#tris label {
+    font-size: 20px;
+}
+
+#tri-type, #tri-prix {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#tri-type input {
+    margin-left: 3px;
+    margin-right: -10px;
+    width: 90px;
+    height: 30px;
+    font-size: 20px;
+}
+
+#tri-prix input[name="prix-min"], #tri-prix input[name="prix-max"] {
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 60px;
+    height: 30px;
+    font-size: 20px;
+}
+
+#bouton-trier {
+    width: 70px;
+}
+
+#bouton-trier button{
+    font-size: 25px;
+    padding: 7px;
+}
+
+#section-profil {
+    margin-left: 20px;
+    margin-top: -5px;
+}
+
+#icone-panier {
+    margin-right: 10px;
+}
+
+#icone-panier, #icone-profil {
+    width: 70px;
+}
+
+#section-profil-bas {
+    margin-top: 10px;
+}
+
+#section-profil-bas a {
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 40px;
+}
+
+#section-profil-bas a span {
+}
+
+h1 {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.form-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 20px;
+}
+
+#btn-commander {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+#btn-commander button {
+    width: 250px;
+    display: block;
+    color: black;
+    font-size: 25px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+    transition-property: "background-color";
+}
+
+#btn-commander button:hover {
+    cursor: pointer;
+    background-color: #add981;
+    -webkit-transition: 100ms linear;
+    -ms-transition: 100ms linear;
+    transition: 100ms linear;
+}
+
+#btn-commander button:focus {
+    border: none;
+    outline: none;
 }

@@ -21,6 +21,7 @@
         header('location:index.php');
     }
     $_GET["id_page"] = 2;
+    session_start();
     include './header.php';
 ?>
 

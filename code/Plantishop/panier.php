@@ -1,7 +1,7 @@
 <?php
     $_GET["id_page"] = 3;
-    include './header.php';
     session_start();
+    include './header.php';
     if(isset($_SESSION["panier"])) {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");

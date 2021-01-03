@@ -1,5 +1,6 @@
 <?php
     $_GET["id_page"] = 1;
+    session_start();
     include './header.php';
 ?>
 <!DOCTYPE html>

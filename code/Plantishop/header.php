@@ -32,7 +32,7 @@
                 <a href="./profil.php<?php if(isset($_GET["id_page"])) {echo "?id_page=".$_GET["id_page"];} ?>" id="icone-profil"><img src="./images/icone_profil.png" alt=""></a>
             </div>
             <div id="section-profil-bas">
-                <?php session_start(); if(isset($_SESSION["id_client"])) { ?> 
+                <?php if(isset($_SESSION["id_client"])) { ?> 
                     <?php if($_SESSION["type"] == "admin") { ?>
                         <a href="./creation_article.php"><i class="fas fa-plus-circle"></i></a>
                     <?php } ?>

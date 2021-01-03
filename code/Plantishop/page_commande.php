@@ -8,7 +8,7 @@
         $stmt = $mysqli -> prepare("SELECT * FROM ligne INNER JOIN article ON ligne.id_article=article.id_article WHERE id_commande=?");
         $stmt->bind_param("d", $_GET["id_commande"]);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = array_map("utf8_encode", $stmt->get_result());
         if($result->num_rows > 1) {
             $lignes = $result->fetch_assoc();
         } else {

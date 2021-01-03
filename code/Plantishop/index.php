@@ -78,8 +78,6 @@
                 });
             });
             loadArticles();
-            // Requête AJAX qui demande les articles à /traitement/resultats.php
-            // Le résultat est utilisé pour faire les liens vers les articles
         </script>
     </body>
 </html>

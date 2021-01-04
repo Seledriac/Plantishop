@@ -14,7 +14,15 @@
         die();
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");        
+    $stmt = $mysqli -> prepare("SELECT * FROM ligne WHERE id_article = ?");
+    $stmt->bind_param("d", $_GET['id_article']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if($result->num_rows > 0) {
+        header('location:../article.php?id_article='.$_GET["id_article"]);
+        die();
+    }
     $sql = "DELETE FROM article WHERE id_article= ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('d', $_GET["id_article"]);

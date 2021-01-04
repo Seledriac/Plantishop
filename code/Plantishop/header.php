@@ -16,9 +16,9 @@
                     </div>
                     <div id="tri-prix">
                         <label for="prix-min">Min</label>
-                        <input type="number" name="prix-min" default="0" min="0" max="999" value="0">
+                        <input type="number" name="prix-min" default="0" min="0" max="9999" value="0">
                         <label for="prix-max">Max</label>
-                        <input type="number" name="prix-max" default="50" min="1" max="1000" value="50">
+                        <input type="number" name="prix-max" default="100" min="1" max="10000" value="100">
                     </div>
                     <div id="bouton-trier">
                         <button type="submit">Trier</button>

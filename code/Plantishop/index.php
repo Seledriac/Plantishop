@@ -33,6 +33,18 @@
             }); 
             window.params.nb_articles = 0;
             function loadArticles() {
+                var query = document.querySelector("input[name=query]");
+                var tri_type = document.querySelector("input[name=tri-type]");
+                var prix_min = document.querySelector("input[name=prix-min]");
+                var prix_max = document.querySelector("input[name=prix-max]");                
+                if(isNaN(prix_min.value) || isNaN(prix_max.value) || query.value.length > 100 || tri_type.value.length > 100) {
+                    e.preventDefault();
+                    return;
+                }
+                if(prix_min.value > prix_max.value) {
+                    e.preventDefault();
+                    return;
+                }
                 $.ajax({
                     type: "GET", 
                     url: "./traitement/resultats.php",

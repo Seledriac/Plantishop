@@ -46,29 +46,29 @@
 
             <div id="Nom">
                 <label for="nom">Nom</label>
-                <input type="text" id="name" name="nom" value="<?php echo $result["nom"]; ?>">   
+                <input type="text" id="name" name="nom" value="<?php echo $result["nom"]; ?>" required>   
             </div>
 
             <div id="Prix">
                 <label for="prix">Prix</label>
-                <input type="number" min="0.00" max="10000.00" step="0.01" name="prix" value="<?php echo $result["prix"]; ?>">
+                <input type="number" min="0.00" max="10000.00" step="0.01" name="prix" value="<?php echo $result["prix"]; ?>" required>
             </div>
 
             <div id="Description">
                 <label for="description">Description</label>
-                <textarea id="msg" name="description" cols="80" rows="10"><?php echo $result["description"]; ?></textarea>
+                <textarea id="msg" name="description" cols="80" rows="10" required><?php echo $result["description"]; ?></textarea>
             </div>
 
             <div id="Categorie">
                 <label for="type">Type</label>
-                <input type="text" id="categorie-select" name="type" value="<?php echo $result["type"]; ?>">
+                <input type="text" id="categorie-select" name="type" value="<?php echo $result["type"]; ?>" required>
             </div>
 
             <div id="Cover">
                 <label for="Image">Image (jpg)</label>
                 <input type="file"
                     id="article_image" name="image"
-                    accept="image/png, image/jpeg">
+                    accept="image/jpeg">
             </div>
 
             <?php if(isset($_GET["id_page"])) { 
@@ -86,5 +86,42 @@
             </div>
             </form>
         </div>
+        <script>
+            document.querySelector("#creation_button button").addEventListener('click', function(e) {
+                var nom = document.querySelector("input[name=nom]");
+                var prix = document.querySelector("input[name=prix]");
+                var description = document.querySelector("input[name=description]");
+                var type = document.querySelector("input[name=type]");
+                nom.style.backgroundColor = 'white';
+                prix.style.backgroundColor = 'white';
+                description.style.backgroundColor = 'white';
+                type.style.backgroundColor = 'white';                    
+                if(isNaN(prix)) {
+                    prix.style.backgroundColor = 'red';
+                    e.preventDefault();
+                    return;
+                }
+                if(type.length > 50){
+                    prix.style.backgroundColor = 'red';
+                    e.preventDefault();
+                    return;
+                }
+                if(nom.length > 50) {
+                    prix.style.backgroundColor = 'red';
+                    e.preventDefault();
+                    return;
+                }
+                if(prix.length > 10) {
+                    prix.style.backgroundColor = 'red';
+                    e.preventDefault();
+                    return;
+                }
+                if(description.length > 500) {
+                    prix.style.backgroundColor = 'red';
+                    e.preventDefault();
+                    return;
+                }
+            });
+        </script>
     </body>
 </html>

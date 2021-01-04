@@ -23,7 +23,7 @@
                 </div>
 
                 <div id="Pseudonyme2">
-                    <input type="text" id="name" name="user_name">
+                    <input type="text" id="name" name="user_name" required>
                 </div>
 
                 <div id="MotDePasse">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div id="MotDePasse2">
-                    <input type="password" id="password" name="user_password">
+                    <input type="password" id="password" name="user_password" required>
                 </div>
 
                 <div id="Confirmer_MotDePasse">
@@ -39,7 +39,7 @@
                 </div>
 
                 <div id="Confirmer_MotDePasse2">
-                    <input type="password" id="confirm_password" name="user_password_confirmation">
+                    <input type="password" id="confirm_password" name="user_password_confirmation" required>
                 </div>
 
                 <div id="Email">
@@ -47,7 +47,7 @@
                 </div>
 
                 <div id="Email2">
-                    <input type="email" id="mail" name="user_email">
+                    <input type="email" id="mail" name="user_email" required>
                 </div>
 
                 <div id="Phone">
@@ -55,9 +55,7 @@
                 </div>
 
                 <div id="Phone2">
-                    <input type="tel" id="phone" name="phone"
-                    pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
-                    required>
+                    <input type="text" id="phone" name="phone" required>
                 </div>
 
                 <?php if(isset($_GET["id_page"])) { 
@@ -70,5 +68,50 @@
                 </div>        
             </form>
         </div>
+        <script>
+            document.querySelector("#inscription_button button").addEventListener('click', function(e) {
+                var user_name = document.querySelector("input[name=user_name]");
+                var user_password = document.querySelector("input[name=user_password]");
+                var user_password_confirmation = document.querySelector("input[name=user_password_confirmation]");
+                var mail = document.querySelector("input[name=user_email]");
+                var phone = document.querySelector("input[name=phone]");
+                user_name.style.backgroundColor = 'white';
+                user_password.style.backgroundColor = 'white';
+                user_password_confirmation.style.backgroundColor = 'white';
+                mail.style.backgroundColor = 'white';
+                phone.style.backgroundColor = 'white';
+                var str = phone.value;
+                var newStr = str.replace(/-/g, "");
+                var newStr2 = newStr.replace(/\s/g, '');
+                phone.value = newStr2;
+                if(user_password.value != user_password_confirmation.value) {
+                    user_password.style.backgroundColor = 'red';
+                    user_password_confirmation.style.backgroundColor = 'red';
+                    e.preventDefault();
+                }                
+                if(user_name.value.length > 50) {
+                    user_name.style.backgroundColor = 'red';
+                    e.preventDefault();
+                }
+                if(user_password.value.length > 50) {
+                    user_password.style.backgroundColor = 'red';
+                    e.preventDefault();
+                }          
+                var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if(!regEx.test(mail.value) || mail.value.length > 100) {
+                    console.log("hello");
+                    mail.style.backgroundColor = 'red';
+                    e.preventDefault();
+                    return;
+                }
+                var regEx2 = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+                if(!regEx2.test(phone.value) || phone.value.length > 100) {
+                    console.log("hella");
+                    phone.style.backgroundColor = 'red';
+                    e.preventDefault();
+                    return;
+                }
+            });
+        </script>
     </body>
 </html>

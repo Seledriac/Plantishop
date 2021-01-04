@@ -1,4 +1,8 @@
 <?php
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+    session_start();
     session_start();
     if(isset($_SESSION["type"])) {
         if(!($_SESSION["type"] == "admin")) {
@@ -10,6 +14,14 @@
         die();
     }
     if(!(isset($_FILES["image"]) && isset($_POST["type"]) && isset($_POST["nom"]) && isset($_POST["prix"]) && isset($_POST["description"]))) {
+        header('location:../index.php');
+        die();
+    }
+    if(!(is_string($_POST['type']) && is_string($_POST['nom']) && is_numeric($_POST['prix']) && is_string($_POST['description']))) {
+        header('location:../index.php');
+        die();
+    }
+    if(strlen($_POST['type']) > 50 || strlen($_POST['nom']) > 50 || strlen($_POST['prix']) > 10 || strlen($_POST['description']) > 500) {
         header('location:../index.php');
         die();
     }

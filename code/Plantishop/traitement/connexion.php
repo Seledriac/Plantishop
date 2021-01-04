@@ -3,6 +3,10 @@
         header('location:../index.php');
         die();
     }
+    if(!(is_string($_POST["user_name"]) && is_string($_POST["user_password"]))) { 
+        header('location:../index.php');
+        die();
+    }
     session_start();
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");

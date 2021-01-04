@@ -3,6 +3,14 @@
         header('location:../index.php');
         die();
     }
+    if(!(is_string($_POST['type']) && is_string($_POST['nom']) && is_numeric($_POST['prix']) && is_string($_POST['description']))) {
+        header('location:../index.php');
+        die();
+    }
+    if(strlen($_POST['type']) > 50 || str_len($_POST['nom']) > 50 || strlen($_POST['prix']) > 10 || strlen($_POST['description']) > 500) {
+        header('location:../index.php');
+        die();
+    }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $mysqli->set_charset("utf8");

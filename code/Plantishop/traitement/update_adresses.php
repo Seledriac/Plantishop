@@ -1,10 +1,21 @@
 <?php
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
     session_start();
     if(!(isset($_SESSION["id_client"]))) {
         header('location:../index.php');
         die();
     }
     if(!(isset($_POST["adresse_facturation"]) && isset($_POST["adresse_livraison"]))) {
+        header('location:../index.php');
+        die();
+    }
+    if(!(is_string($_POST['adresse_facturation']) && is_string($_POST['adresse_livraison']))) {
+        header('location:../index.php');
+        die();
+    }
+    if(strlen($_POST['adresse_facturation']) > 200 || strlen($_POST['adresse_livraison']) > 200) {
         header('location:../index.php');
         die();
     }

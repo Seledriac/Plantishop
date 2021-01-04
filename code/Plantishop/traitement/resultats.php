@@ -7,7 +7,7 @@
     $query = "%%";
     $type = "%%";
     $prix_min = 0;
-    $prix_max = 1000;
+    $prix_max = 10000;
     if(isset($_GET["query"])) { 
         $query = "%".$_GET["query"]."%";
     }
@@ -15,20 +15,19 @@
         $type = "%".$_GET["tri-type"]."%";
     }
     if(isset($_GET["prix-min"])) {
-        if(isset($_GET["prix-max"])) {
-            if($_GET["prix-min"] < $_GET["prix-max"])
-                $prix_max = intval($_GET["prix-min"]);
-        } else {
+        if(is_numeric($_GET["prix-min"])) {
             $prix_min = intval($_GET["prix-min"]);
         }
     }
     if(isset($_GET["prix-max"])) {
-        if(isset($_GET["prix-min"])) {
-            if($_GET["prix-max"] > $_GET["prix-min"])
-                $prix_max = intval($_GET["prix-max"]);
-        } else {
+        if(is_numeric($_GET["prix-max"])) {
             $prix_max = intval($_GET["prix-max"]);
         }
+    }
+    if($prix_min > $prix_max) {
+        $tmp = $prix_min;
+        $prix_min = $prix_max;
+        $prix_max = $prix_min;
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");

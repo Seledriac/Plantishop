@@ -56,10 +56,34 @@
                         +'<input type="text" name="mail" value="'+ infos.mail +'">'
                         +'<label for="tel">Numéro de téléphone</label>'
                         +'<input type="text" name="tel" value="' + infos.tel  + '">'
-                        +'<input type="submit" value="Sauvegarder">'
+                        +'<input id="btn-submit" type="submit" value="Sauvegarder">'
                         +'</form>';
                         contenu += '</table>';
                         conteneur.innerHTML = contenu;
+                        document.querySelector("#btn-submit").addEventListener('click', function(e) {
+                            var mail = document.querySelector("input[name=mail]");
+                            var phone = document.querySelector("input[name=tel]");
+                            mail.style.backgroundColor = 'white';
+                            phone.style.backgroundColor = 'white';
+                            var str = phone.value;
+                            var newStr = str.replace(/-/g, "");
+                            var newStr2 = newStr.replace(/\s/g, '');
+                            phone.value = newStr2;                            
+                            var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                            if(!regEx.test(mail.value) || mail.value.length > 100) {
+                                console.log("hello");
+                                mail.style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }
+                            var regEx2 = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+                            if(!regEx2.test(phone.value) || phone.value.length > 100) {
+                                console.log("hella");
+                                phone.style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }
+                        });
                     },
                     error: function(xhr, ajaxOptions, thrownError) { 
                         console.log(xhr.responseText);
@@ -80,10 +104,26 @@
                         +'<input type="text" name="adresse_facturation" value="'+ infos.adresse_facturation +'">'
                         +'<label for="adresse_livraison">Adresse de livraison</label>'
                         +'<input type="text" name="adresse_livraison" value="' + infos.adresse_livraison + '">'
-                        +'<input type="submit" value="Sauvegarder">'
+                        +'<input id="btn-submit" type="submit" value="Sauvegarder">'
                         +'</form>';
                         contenu += '</table>';
                         conteneur.innerHTML = contenu;
+                        document.querySelector("#btn-submit").addEventListener('click', function(e) {                
+                            var adresse_facturation = document.querySelector("input[name=adresse_facturation]");
+                            var adresse_livraison = document.querySelector("input[name=adresse_livraison]");
+                            adresse_facturation.style.backgroundColor = 'white';
+                            adresse_livraison.style.backgroundColor = 'white';
+                            if(adresse_facturation.value.length > 200) {
+                                document.querySelector("input[name=adresse_facturation]").style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }
+                            if(adresse_livraison.value.length > 200) {
+                                document.querySelector("input[name=adresse_livraison]").style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }                            
+                        });
                     },
                     error: function(xhr, ajaxOptions, thrownError) { 
                         console.log(xhr.responseText);
@@ -106,10 +146,63 @@
                         +'<input type="text" name="nom_cb" value="' + infos.nom_cb  + '">'
                         +'<label for="num_cvv">Numéro CVV</label>'
                         +'<input type="text" name="num_cvv" value="' + infos.num_cvv  + '">'
-                        +'<input type="submit" value="Sauvegarder">'
+                        +'<input id="btn-submit" type="submit" value="Sauvegarder">'
                         +'</form>';
                         contenu += '</table>';
                         conteneur.innerHTML = contenu;
+                        document.querySelector("#btn-submit").addEventListener('click', function(e) {                            
+                            var num_cb = document.querySelector("input[name=num_cb]");
+                            var nom_cb = document.querySelector("input[name=nom_cb]");
+                            var num_cvv = document.querySelector("input[name=num_cvv]");
+                            num_cb.style.backgroundColor = 'white';
+                            nom_cb.style.backgroundColor = 'white';
+                            num_cvv.style.backgroundColor = 'white';
+                            var str = num_cb.value;
+                            var newStr = str.replace(/-/g, "");
+                            var newStr2 = newStr.replace(/\s/g, '');
+                            num_cb.value = newStr2;
+                            if(isNaN(num_cb.value)) {
+                                document.querySelector("input[name=num_cb]").style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }
+                            if(isNaN(num_cvv.value)) {
+                                document.querySelector("input[name=num_cvv]").style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }
+                            // Fonction trouvée à l'url suivant : https://stackoverflow.com/questions/12310837/implementation-of-luhn-algorithm
+                            function valid_credit_card(value) {
+                                if (/[^0-9-\s]+/.test(value)) return false;
+                                var nCheck = 0, nDigit = 0, bEven = false;
+                                value = value.replace(/\D/g, "");
+                                for (var n = value.length - 1; n >= 0; n--) {
+                                    var cDigit = value.charAt(n),
+                                        nDigit = parseInt(cDigit, 10);
+                                    if (bEven) {
+                                        if ((nDigit *= 2) > 9) nDigit -= 9;
+                                    }
+                                    nCheck += nDigit;
+                                    bEven = !bEven;
+                                }
+                                return (nCheck % 10) == 0;
+                            }
+                            if(num_cb.value.length != 16 || !(valid_credit_card(num_cb.value))) {
+                                document.querySelector("input[name=num_cb]").style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }                                                      
+                            if(nom_cb.value.length > 100) {
+                                document.querySelector("input[name=nom_cb]").style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }
+                            if(num_cvv.value.length != 3) {
+                                document.querySelector("input[name=num_cvv]").style.backgroundColor = 'red';
+                                e.preventDefault();
+                                return;
+                            }
+                        });
                     },
                     error: function(xhr, ajaxOptions, thrownError) { 
                         console.log(xhr.responseText);
@@ -155,7 +248,6 @@
                             tbody.appendChild(tr);
                         }
                         conteneur.appendChild(tableau);
-                        console.log(tableau);
                     },
                     error: function(xhr, ajaxOptions, thrownError) { 
                         console.log(xhr.responseText);

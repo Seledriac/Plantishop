@@ -35,6 +35,14 @@ body {
     text-align: left;
 }
 
+.prix span {
+    width: 50px;
+}
+
+.prix a {
+    color: black;
+}
+
 #div-commander {
     display: flex;
     flex-direction: column;

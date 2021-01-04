@@ -12,6 +12,7 @@
             $stmt->execute();            
             $result = $stmt->get_result();            
             $lignes[$id_article] = array_map("utf8_encode", $result->fetch_assoc());
+            $lignes[$id_article]["id_article"] =  $id_article;
             $lignes[$id_article]["quantite"] =  $nb_articles;
         }
         $mysqli->close();
@@ -44,9 +45,9 @@
                             <tr class="ligne">
                                 <td class="nom"><?php echo $ligne["nom"] ?></td>
                                 <td class="quantite"><?php echo $ligne["quantite"] ?></td>
-                                <td class="prix"><?php echo $ligne["prix"] ?>€</td>
+                                <td class="prix"><?php echo $ligne["prix"] ?>€&nbsp;&nbsp;<a href="./traitement/remove_article_panier.php?id_article=<?php echo $ligne["id_article"]; ?>"><i class="fas fa-trash"></i></a></td>                                
                             </tr>
-                        <?php } }?>
+                        <?php } } ?>
                     </table>
                 </div>
                 <div id="div-commander">

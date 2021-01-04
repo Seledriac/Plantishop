@@ -23,7 +23,7 @@
                 </div>
 
                 <div id="Pseudonyme2">
-                    <input type="text" id="name" name="user_name">
+                    <input type="text" id="name" name="user_name" required>
                 </div>
 
                 <div id="MotDePasse">
@@ -31,7 +31,7 @@
                 </div>
 
                 <div id="MotDePasse2">
-                    <input type="password" id="password" name="user_password">
+                    <input type="password" id="password" name="user_password" required>
                 </div>
 
                 <?php if(isset($_GET["id_page"])) { 
@@ -48,5 +48,15 @@
                 </div>
             </form>
         </div>
+        <script>
+            document.querySelector("#connexion_button button").addEventListener('click', function(e) {
+                var user_name = document.querySelector("input[name=user_name]").value;
+                var user_password = document.querySelector("input[name=user_password]").value;
+                if(user_name.length > 50 || user_password.length > 50) {
+                    e.preventDefault();
+                    return;
+                }
+            });
+        </script>
     </body>
 </html>

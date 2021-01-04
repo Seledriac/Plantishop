@@ -3,7 +3,6 @@
     if(!(isset($_SESSION["id_client"]))) {
         die();
     }
-    session_start();
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $sql = "SELECT id_commande,date FROM commande WHERE id_client=?";

@@ -65,12 +65,12 @@
                 adresse_facturation.style.backgroundColor = 'white';
                 adresse_livraison.style.backgroundColor = 'white';
                 if(adresse_facturation.value.length > 200) {
-                    document.querySelector("input[name=adresse_facturation]").style.backgroundColor = 'red';
+                    document.querySelector("input[name=adresse_facturation]").style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(adresse_livraison.value.length > 200) {
-                    document.querySelector("input[name=adresse_livraison]").style.backgroundColor = 'red';
+                    document.querySelector("input[name=adresse_livraison]").style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }  
@@ -85,12 +85,12 @@
                 var newStr2 = newStr.replace(/\s/g, '');
                 num_cb.value = newStr2;
                 if(isNaN(num_cb.value)) {
-                    document.querySelector("input[name=num_cb]").style.backgroundColor = 'red';
+                    document.querySelector("input[name=num_cb]").style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(isNaN(num_cvv.value)) {
-                    document.querySelector("input[name=num_cvv]").style.backgroundColor = 'red';
+                    document.querySelector("input[name=num_cvv]").style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
@@ -111,17 +111,17 @@
                     return (nCheck % 10) == 0;
                 }
                 if(num_cb.value.length != 16 || !(valid_credit_card(num_cb.value))) {
-                    document.querySelector("input[name=num_cb]").style.backgroundColor = 'red';
+                    document.querySelector("input[name=num_cb]").style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }                                                      
                 if(nom_cb.value.length > 100) {
-                    document.querySelector("input[name=nom_cb]").style.backgroundColor = 'red';
+                    document.querySelector("input[name=nom_cb]").style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(num_cvv.value.length != 3) {
-                    document.querySelector("input[name=num_cvv]").style.backgroundColor = 'red';
+                    document.querySelector("input[name=num_cvv]").style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }

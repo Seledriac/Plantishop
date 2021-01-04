@@ -71,6 +71,11 @@
                     accept="image/jpeg">
             </div>
 
+            <div id="qte_stock">
+                <label for="type">Quantité en stock</label>
+                <input type="number" id="qte_stock" name="qte_stock" value="<?php echo $result["qte_stock"]; ?>" min="0" required>
+            </div>
+
             <?php if(isset($_GET["id_page"])) { 
                 $id_page = $_GET["id_page"]; ?>                
                 <input type="hidden" name="id_page" value="<?php echo $_GET["id_page"]; ?>">
@@ -97,27 +102,32 @@
                 description.style.backgroundColor = 'white';
                 type.style.backgroundColor = 'white';                    
                 if(isNaN(prix)) {
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(type.length > 50){
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(nom.length > 50) {
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
-                if(prix.length > 10) {
-                    prix.style.backgroundColor = 'red';
+                if(prix.length > 10 || prix.value < 0) {
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(description.length > 500) {
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
+                    e.preventDefault();
+                    return;
+                }
+                if(qte_stock.length > 10 || qte_stock.value < 0) {
+                    qte_stock.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }

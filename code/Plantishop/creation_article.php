@@ -72,27 +72,27 @@
                 description.style.backgroundColor = 'white';
                 type.style.backgroundColor = 'white';                    
                 if(isNaN(prix)) {
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(type.length > 50){
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(nom.length > 50) {
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
-                if(prix.length > 10) {
-                    prix.style.backgroundColor = 'red';
+                if(prix.length > 10 || prix.value < 0) {
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 if(description.length > 500) {
-                    prix.style.backgroundColor = 'red';
+                    prix.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }

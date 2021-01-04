@@ -1,22 +1,22 @@
 <?php
-    if(!(isset($_POST["id_article"]) && isset($_POST["type"]) && isset($_POST["nom"]) && isset($_POST["prix"]) && isset($_POST["description"]))) {
+    if(!(isset($_POST["id_article"]) && isset($_POST["type"]) && isset($_POST["nom"]) && isset($_POST["prix"]) && isset($_POST["description"]) && isset($_POST["qte_stock"]))) {
         header('location:../index.php');
         die();
     }
-    if(!(is_string($_POST['type']) && is_string($_POST['nom']) && is_numeric($_POST['prix']) && is_string($_POST['description']))) {
+    if(!(is_string($_POST['type']) && is_string($_POST['nom']) && is_numeric($_POST['prix']) && is_string($_POST['description']) && is_numeric($_POST["qte_stock"]))) {
         header('location:../index.php');
         die();
     }
-    if(strlen($_POST['type']) > 50 || str_len($_POST['nom']) > 50 || strlen($_POST['prix']) > 10 || strlen($_POST['description']) > 500) {
+    if(strlen($_POST['type']) > 50 || strlen($_POST['nom']) > 50 || strlen($_POST['prix']) > 10 || $_POST['prix'] < 0 || strlen($_POST['description']) > 500 || $_POST["qte_stock"] < 0) {
         header('location:../index.php');
         die();
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $mysqli->set_charset("utf8");
-    $sql = "UPDATE article SET type=?, nom=?, prix=?, description=? WHERE id_article=?";
+    $sql = "UPDATE article SET type=?, nom=?, prix=?, description=?, qte_stock=? WHERE id_article=?";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('ssssd', $_POST["type"], $_POST["nom"], $_POST["prix"], $_POST["description"], $_POST["id_article"]);
+    $stmt->bind_param('ssssdd', $_POST["type"], $_POST["nom"], $_POST["prix"], $_POST["description"], $_POST["qte_stock"], $_POST["id_article"]);
     $stmt->execute();
     $id_article = $_POST["id_article"];
     if(isset($_FILES["image"])) {        

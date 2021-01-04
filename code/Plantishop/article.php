@@ -92,8 +92,12 @@
                         url: "./traitement/ajout_panier.php",
                         data: {"id_article": window.map.get("id_article")},
                         dataType: 'json',
-                        success: function(panier) {
-                            //console.log(panier)}
+                        success: function(qte_stock) {
+                            if(qte_stock.qte_stock < 1) {
+                                document.querySelector("#btn-ajouter").innerText = 'Rupture de stock';
+                                document.querySelector("#btn-ajouter").style.fontSize = '20px';
+                                document.querySelector("#btn-ajouter").style.fontWeight = 'bold';
+                            }
                         },
                         error: function(xhr, ajaxOptions, thrownError) { 
                             console.log(xhr.responseText);

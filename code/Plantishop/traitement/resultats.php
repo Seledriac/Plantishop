@@ -1,4 +1,5 @@
 <?php
+    session_start();
     if(!(isset($_GET["nb_articles"]))) {
         die();
     }
@@ -31,14 +32,16 @@
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
-    $sql = "SELECT id_article, nom, prix FROM article WHERE nom LIKE ? AND type LIKE ? AND prix BETWEEN ? AND ? LIMIT ?,?";
+    $sql = "SELECT id_article, nom, prix, qte_stock FROM article WHERE nom LIKE ? AND type LIKE ? AND prix BETWEEN ? AND ? LIMIT ?,?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('ssdddd', $query, $type, $prix_min, $prix_max, $nb_articles, $nb_articles_plus_6);
     $stmt->execute();
     $result = $stmt->get_result();
     $results = array();
-    while($row = $result->fetch_assoc()) {
-        $results[] = array_map("utf8_encode", $row);
+    while($row = $result->fetch_assoc()) {        
+        if($row['qte_stock'] > 0 || $_SESSION['type'] == 'admin') {
+            $results[] = array_map("utf8_encode", $row);
+        }
     }
     // FORMAT D'UN OBJET RENVOYÉ        
     // {

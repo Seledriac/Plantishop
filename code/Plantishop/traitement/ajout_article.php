@@ -1,7 +1,4 @@
 <?php
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL);
     session_start();
     session_start();
     if(isset($_SESSION["type"])) {
@@ -21,14 +18,14 @@
         header('location:../index.php');
         die();
     }
-    if(strlen($_POST['type']) > 50 || strlen($_POST['nom']) > 50 || strlen($_POST['prix']) > 10 || strlen($_POST['description']) > 500) {
+    if(strlen($_POST['type']) > 50 || strlen($_POST['nom']) > 50 || strlen($_POST['prix']) > 10 || $_POST['prix'] < 0 || strlen($_POST['description']) > 500) {
         header('location:../index.php');
         die();
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $mysqli->set_charset("utf8");
-    $sql = "INSERT INTO article(type, nom, prix, description) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO article(type, nom, prix, description, qte_stock) VALUES (?, ?, ?, ?, 0)";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('ssss', $_POST["type"], $_POST["nom"], $_POST["prix"], $_POST["description"]);
     $stmt->execute();

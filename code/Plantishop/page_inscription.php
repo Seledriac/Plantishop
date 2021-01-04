@@ -85,29 +85,29 @@
                 var newStr2 = newStr.replace(/\s/g, '');
                 phone.value = newStr2;
                 if(user_password.value != user_password_confirmation.value) {
-                    user_password.style.backgroundColor = 'red';
-                    user_password_confirmation.style.backgroundColor = 'red';
+                    user_password.style.backgroundColor = '#ff0033';
+                    user_password_confirmation.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                 }                
                 if(user_name.value.length > 50) {
-                    user_name.style.backgroundColor = 'red';
+                    user_name.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                 }
                 if(user_password.value.length > 50) {
-                    user_password.style.backgroundColor = 'red';
+                    user_password.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                 }          
                 var regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 if(!regEx.test(mail.value) || mail.value.length > 100) {
                     console.log("hello");
-                    mail.style.backgroundColor = 'red';
+                    mail.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }
                 var regEx2 = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
                 if(!regEx2.test(phone.value) || phone.value.length > 100) {
                     console.log("hella");
-                    phone.style.backgroundColor = 'red';
+                    phone.style.backgroundColor = '#ff0033';
                     e.preventDefault();
                     return;
                 }

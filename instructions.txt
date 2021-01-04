@@ -1,3 +1,0 @@
-filtres (prix entre x et y), dates de livraison...
-ajouter gestion des stocks
-ajouter contrôles des champs (expressions régulières)

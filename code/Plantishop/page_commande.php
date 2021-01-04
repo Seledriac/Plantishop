@@ -17,11 +17,8 @@
         $stmt->bind_param("d", $_GET["id_commande"]);
         $stmt->execute();
         $result = $stmt->get_result();
-        $encoded_result = array_map("utf8_encode", $result->fetch_assoc());
-        if($result->num_rows > 1) {
-            $lignes = $encoded_result;
-        } else {
-            $lignes = [$encoded_result];
+        while($row = $result->fetch_assoc()) {
+            $lignes[] = array_map("utf8_encode", $row);
         }
         $mysqli->close();
     } else {

@@ -1,15 +1,29 @@
 <?php
     session_start();
+    if(isset($_SESSION["type"])) {
+        if(!($_SESSION["type"] == "admin")) {
+            header('location:../index.php');
+            die();
+        }
+    } else {
+        header('location:../index.php');
+        die();
+    }
+    if(!(isset($_GET["id_article"]))) {
+        header('location:../index.php');
+        die();
+    }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $sql = "DELETE FROM article WHERE id_article= ?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('d', $_GET["id_article"]);
     $stmt->execute();
+    unlink("../images/articles/article_".$_GET["id_article"].".jpg");
     if(isset($_SESSION["panier"])) { 
         if(isset($_SESSION["panier"][$_GET["id_article"]])) { 
             unset($_SESSION["panier"][$_GET["id_article"]]);
         }
     }
-    header('location: ../index.php');
+    header('location:../index.php');
     die();

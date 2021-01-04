@@ -3,6 +3,16 @@
     $_GET["id_page"] = 4;
     if(!(isset($_SESSION["id_client"]))) {
         header('location:./page_connexion.php?id_page=4');
+        die();
+    }
+    if(isset($_SESSION["panier"])) {
+        if(count($_SESSION["panier"]) == 0) {
+            header('location:./panier.php');
+            die();
+        }
+    } else {
+        header('location:./panier.php');
+        die();
     }
     include './header.php';
 ?>

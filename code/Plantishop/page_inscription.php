@@ -2,7 +2,6 @@
     session_start();
     include './header.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -60,6 +59,11 @@
                     pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}"
                     required>
                 </div>
+
+                <?php if(isset($_GET["id_page"])) { 
+                    $id_page = $_GET["id_page"]; ?>                
+                    <input type="hidden" name="id_page" value="<?php echo $_GET["id_page"]; ?>">
+                <?php } ?>
 
                 <div id="inscription_button">
                     <button type="submit"> Inscription </button>

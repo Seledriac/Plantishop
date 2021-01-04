@@ -41,7 +41,4 @@
             </div>
         </section>
     </div>
-    <script>
-
-    </script>
 </html>

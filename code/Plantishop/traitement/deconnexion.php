@@ -8,7 +8,6 @@
     } else {
         session_destroy();
     }
-    
     if(isset($_GET["id_page"])) { 
         switch($_GET["id_page"]) { // Redirection vers la page précédente
             case 1:
@@ -27,6 +26,7 @@
                 header('location:../profil.php');
                 break;
             default:
+                header('location:../index.php');
                 break;
         }
     } else {

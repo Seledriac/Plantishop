@@ -2,11 +2,11 @@
     session_start();
     if(isset($_SESSION["type"])) {
         if(!$_SESSION["type"] == "administrateur") {
-            header('location:index.php');
+            header('location:./index.php');
             die();
         }
     } else {
-        header('location:index.php');
+        header('location:./index.php');
         die();
     }
     if(isset($_GET["id_article"])) {

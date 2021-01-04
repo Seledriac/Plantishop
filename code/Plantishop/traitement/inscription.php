@@ -1,4 +1,8 @@
 <?php
+    if(!(isset($_POST["user_name"]) && isset($_POST["user_password"]) && isset($_POST["user_email"]) && isset($_POST["phone"]))) {
+        header('location:../index.php');
+        die();
+    }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $mysqli->set_charset("utf8");

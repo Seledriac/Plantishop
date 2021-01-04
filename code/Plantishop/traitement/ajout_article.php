@@ -1,4 +1,18 @@
 <?php
+    session_start();
+    if(isset($_SESSION["type"])) {
+        if(!($_SESSION["type"] == "admin")) {
+            header('location:../index.php');
+            die();
+        }
+    } else {
+        header('location:../index.php');
+        die();
+    }
+    if(!(isset($_FILES["image"]) && isset($_POST["type"]) && isset($_POST["nom"]) && isset($_POST["prix"]) && isset($_POST["description"]))) {
+        header('location:../index.php');
+        die();
+    }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
     $mysqli->set_charset("utf8");
@@ -36,5 +50,5 @@
         $target_file = $target_dir."article_".$id_article.".jpg";
         move_uploaded_file($_FILES["image"]["tmp_name"], $target_file);
     }
-    header('location: ../index.php');
+    header('location:../index.php');
     die();

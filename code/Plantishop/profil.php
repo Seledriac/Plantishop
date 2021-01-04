@@ -4,6 +4,7 @@
     if(!(isset($_SESSION["id_client"]))) {
         $str.='?id_page='.$_GET["id_page"];        
         header($str);
+        die();
     }
     $GET_["id_page"] = 5;
     include "./header.php";
@@ -14,7 +15,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Page de profil - <?php echo $_SESSION["username"] ?></title>
+        <title>Page de profil - <?php echo ucfirst($_SESSION["username"]) ?></title>
         <link href="./librairies/fontawesome-free-5.15.1-web/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="./css/header.css">
         <link rel="stylesheet" href="./css/profil.css">

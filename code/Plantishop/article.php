@@ -7,6 +7,10 @@
         $stmt->bind_param('d', $_GET["id_article"]);
         $stmt->execute();
         $result = $stmt->get_result();
+        if($result->num_rows < 1) {
+            header('location:./index.php');
+            die();
+        }
         $getData = array_map("utf8_encode", $result->fetch_assoc());
         // Les données sont de la forme :
         // [
@@ -18,13 +22,13 @@
         //]
         $mysqli->close();
     } else {
-        header('location:index.php');
+        header('location:./index.php');
+        die(); 
     }
     $_GET["id_page"] = 2;
     session_start();
     include './header.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>

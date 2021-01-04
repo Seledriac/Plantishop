@@ -1,4 +1,7 @@
 <?php
+    if(!(isset($_GET["nb_articles"]))) {
+        die();
+    }
     $nb_articles = $_GET["nb_articles"];
     $nb_articles_plus_6 = strval(intval($nb_articles + 6));
     $query = "%%";

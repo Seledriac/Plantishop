@@ -1,4 +1,8 @@
 <?php
+    if(!(isset($_POST["user_name"]) && isset($_POST["user_password"]))) { 
+        header('location:../index.php');
+        die();
+    }
     session_start();
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
@@ -35,7 +39,11 @@
             case 4:
                 header('location:../commander.php');
                 break;
+            case 5:
+                header('location:../profil.php');
+                break;
             default:
+                header('location:../index.php');
                 break;
         }
     } else {

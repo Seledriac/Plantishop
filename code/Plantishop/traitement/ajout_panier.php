@@ -18,4 +18,5 @@
     } else {
         $_SESSION["panier"][$id_article] = 1;
     }
-    echo json_encode($_SESSION["panier"]);
+    // echo json_encode($_SESSION["panier"]);
+    die();

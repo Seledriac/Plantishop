@@ -3,13 +3,14 @@
     if(isset($_SESSION["type"])) {
         if(!($_SESSION["type"] == "admin")) {
             header('location:./index.php');
+            die();
         }
     } else {
         header('location:./index.php');
+        die();
     }
     include './header.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>

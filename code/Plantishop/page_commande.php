@@ -1,22 +1,35 @@
 <?php
-    if(isset($_GET["id_commande"])) {
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
+    session_start();
+    if(isset($_GET["id_commande"]) && isset($_SESSION["id_client"])) {
         $_GET["id_page"] = 3;
-        session_start();
         include './header.php';
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
         $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+        $stmt = $mysqli -> prepare("SELECT * FROM commande WHERE id_commande=? AND id_client=? LIMIT 1");
+        $stmt->bind_param("dd", $_GET["id_commande"], $_SESSION["id_client"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if(!($result->num_rows == 1)) {
+            header('location:./index.php');
+            die();
+        }
         $stmt = $mysqli -> prepare("SELECT * FROM ligne INNER JOIN article ON ligne.id_article=article.id_article WHERE id_commande=?");
         $stmt->bind_param("d", $_GET["id_commande"]);
         $stmt->execute();
-        $result = array_map("utf8_encode", $stmt->get_result());
+        $result = $stmt->get_result();
+        $encoded_result = array_map("utf8_encode", $result->fetch_assoc());
         if($result->num_rows > 1) {
-            $lignes = $result->fetch_assoc();
+            $lignes = $encoded_result;
         } else {
-            $lignes = [$result->fetch_assoc()];    
+            $lignes = [$encoded_result];
         }
         $mysqli->close();
     } else {
-        header('location: ./index.php');
+        header('location:./index.php');
+        die();
     }
 ?>
 <!DOCTYPE html>

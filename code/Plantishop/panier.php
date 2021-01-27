@@ -4,7 +4,9 @@
     include './header.php';
     if(isset($_SESSION["panier"])) {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+        include './config.php';
+        $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+        $mysqli->set_charset("latin1");
         $lignes = array();
         foreach($_SESSION["panier"] as $id_article => $nb_articles) {
             $stmt = $mysqli -> prepare("SELECT nom, prix FROM article WHERE id_article = ?");

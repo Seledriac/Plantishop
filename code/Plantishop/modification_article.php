@@ -11,7 +11,9 @@
     }
     if(isset($_GET["id_article"])) {
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+        include './config.php';
+        $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+        $mysqli->set_charset("latin1");
         $sql = "SELECT * FROM article WHERE id_article=? LIMIT 1";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param('d', $_GET["id_article"]);

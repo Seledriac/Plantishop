@@ -4,7 +4,9 @@
         $_GET["id_page"] = 3;
         include './header.php';
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+        include './config.php';
+        $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+        $mysqli->set_charset("latin1");
         $stmt = $mysqli -> prepare("SELECT * FROM commande WHERE id_commande=? AND id_client=? LIMIT 1");
         $stmt->bind_param("dd", $_GET["id_commande"], $_SESSION["id_client"]);
         $stmt->execute();

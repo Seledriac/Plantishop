@@ -1,4 +1,7 @@
 <?php
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ALL);
     session_start();
     if(!(isset($_GET["nb_articles"]))) {
         die();
@@ -30,11 +33,14 @@
         $prix_min = $prix_max;
         $prix_max = $prix_min;
     }
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
-    $sql = "SELECT id_article, nom, prix, qte_stock FROM article WHERE nom LIKE ? AND type LIKE ? AND prix BETWEEN ? AND ? LIMIT ?,?";
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);    
+    include '../config.php';
+    $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+    $mysqli->set_charset("latin1");
+    $sql = "SELECT id_article, nom, prix, qte_stock FROM article WHERE nom LIKE ? AND type LIKE ? AND prix BETWEEN ? AND ? ORDER BY id_article ASC LIMIT $nb_articles,$nb_articles_plus_6";
     $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param('ssdddd', $query, $type, $prix_min, $prix_max, $nb_articles, $nb_articles_plus_6);
+    // $stmt->bind_param('ssdddd', $query, $type, $prix_min, $prix_max, $nb_articles, $nb_articles_plus_6);
+    $stmt->bind_param('ssdd', $query, $type, $prix_min, $prix_max);
     $stmt->execute();
     $result = $stmt->get_result();
     $results = array();

@@ -12,8 +12,9 @@
         die();
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
-    $mysqli->set_charset("utf8");
+    include '../config.php';
+    $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+    $mysqli->set_charset("latin1");
     $sql = "UPDATE article SET type=?, nom=?, prix=?, description=?, qte_stock=? WHERE id_article=?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('ssssdd', $_POST["type"], $_POST["nom"], $_POST["prix"], $_POST["description"], $_POST["qte_stock"], $_POST["id_article"]);

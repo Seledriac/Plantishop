@@ -14,7 +14,9 @@
         die();
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");        
+    include '../config.php';
+    $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+    $mysqli->set_charset("latin1");
     $stmt = $mysqli -> prepare("SELECT * FROM ligne WHERE id_article = ?");
     $stmt->bind_param("d", $_GET['id_article']);
     $stmt->execute();

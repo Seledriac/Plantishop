@@ -50,7 +50,7 @@
                     url: "./traitement/resultats.php",
                     data: window.params,
                     dataType: 'json',
-                    success: function(articles) {               
+                    success: function(articles) {
                         var conteneur = document.createElement("div");
                         conteneur.classList.add("articles");
                         for (var i = 0; i < articles.length; i++) {

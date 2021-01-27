@@ -4,7 +4,9 @@
         die();
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    include '../config.php';
+    $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+    $mysqli->set_charset("latin1");
     $sql = "SELECT id_commande,date FROM commande WHERE id_client=?";
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param('d', $_SESSION["id_client"]);

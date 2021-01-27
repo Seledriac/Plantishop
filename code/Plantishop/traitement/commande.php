@@ -1,7 +1,7 @@
 <?php
-    ini_set('display_errors', '1');
-    ini_set('display_startup_errors', '1');
-    error_reporting(E_ALL);
+    // ini_set('display_errors', '1');
+    // ini_set('display_startup_errors', '1');
+    // error_reporting(E_ALL);
     session_start();
     if(!(isset($_SESSION["id_client"]) && isset($_POST["adresse_facturation"]) && isset($_POST["adresse_livraison"]) && isset($_POST["num_cb"]) && isset($_POST["nom_cb"]) && isset($_POST["num_cvv"]))) {
         header('location:../index.php');
@@ -32,7 +32,9 @@
         die();
     }
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    include '../config.php';
+    $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+    $mysqli->set_charset("latin1");
     $mysqli->query("BEGIN;");
     $stmt = $mysqli->prepare("INSERT INTO commande(id_client, date) VALUES(?,?);");
     $date = date("Y-m-d");

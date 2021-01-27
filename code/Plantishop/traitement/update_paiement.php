@@ -37,7 +37,9 @@
     echo var_dump($_POST["num_cvv"]);
     echo var_dump($_SESSION["id_client"]);
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+    include '../config.php';
+    $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+    $mysqli->set_charset("latin1");
     $stmt = $mysqli->prepare("UPDATE utilisateur SET num_cb=?, nom_cb=?, num_cvv=? WHERE id_client=?;");
     $stmt->bind_param("sssd", $_POST["num_cb"], $_POST["nom_cb"], $_POST["num_cvv"], $_SESSION["id_client"]);
     $stmt->execute();

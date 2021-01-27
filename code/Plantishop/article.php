@@ -1,7 +1,12 @@
 <?php
+    // ini_set('display_errors', '1');
+    // ini_set('display_startup_errors', '1');
+    // error_reporting(E_ALL);
     if(isset($_GET["id_article"])) { // L'id d'article est passé en paramètre get des liens d'articles  
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $mysqli = new mysqli("localhost:3306", "root", "root", "plantishop");
+        include './config.php';
+        $mysqli = new mysqli(constant('server') . ':' . constant('mysql_port'), constant('user_sql'), constant('pass_sql'), constant('dbname'));
+        $mysqli->set_charset("latin1");
         $sql = "SELECT * FROM article WHERE id_article = ?";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param('d', $_GET["id_article"]);

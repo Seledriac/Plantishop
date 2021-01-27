@@ -2,4 +2,5 @@
 
 
 
-Le site web est disponible à l'adresse web suivante : https://plantishop.shop/
+Ce site web est le fruit d'un projet scolaire.
+Il est disponible à l'adresse web suivante : https://plantishop.shop/

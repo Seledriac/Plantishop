@@ -1,4 +1,4 @@
-# Plantishop : Tout pour le jardin à prix malin - Un site web e-commerce
+# Plantishop : Tout pour le jardin à prix malin - Un site web e-commerce (fictif)
 
 
 
